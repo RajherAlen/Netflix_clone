@@ -62,7 +62,7 @@ const Row = ({ title, fetchURL, isLargeRow }) => {
           <img
             key={movie.id}
             onClick={() => handleClickInfo(movie)}
-            className="row_poster"
+            className={`row_poster ${isLargeRow && "row_posterLarge"}`}
             src={`${base_url}${
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
