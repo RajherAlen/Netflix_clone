@@ -1,9 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { db } from "../firebase";
+import firebase from "firebase";
 
 const base_url = "https://image.tmdb.org/t/p/original/";
 
 const MovieInfo = ({ movieInfo, handleClick, setMovieInfo }) => {
-  console.log(movieInfo);
+  const [add, setAdd] = useState(false);
+  const [locUserId, setLocUserId] = useState("");
+  const [myList, setMyList] = useState([]);
+
+  useEffect(() => {
+    if (locUserId) {
+      db.collection("users")
+        .doc(locUserId)
+        .collection("movieList")
+        .onSnapshot((snapshot) => {
+          setMyList(snapshot.docs.map((doc) => doc.data()));
+        });
+    }
+  }, [locUserId]);
+
+  useEffect(() => {
+    const data = localStorage.getItem("current-user");
+
+    if (data) {
+      const dataPars = JSON.parse(data);
+      setLocUserId(dataPars.uid);
+    }
+  }, []);
+
+  const addToMyList = () => {
+    let newList = myList.filter((movie) => movieInfo.id !== movie.id);
+
+    db.collection("users")
+      .doc(locUserId)
+      .collection("movieList")
+      .add({
+        title: movieInfo?.title || movieInfo?.original_name || movieInfo?.name,
+        id: movieInfo.id,
+        watched: false,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+    setAdd(true);
+
+    setTimeout(() => setAdd(false), 2000);
+  };
+
   return (
     <div className="movieCont">
       <button className="btnX xInfo" onClick={() => setMovieInfo("")}>
@@ -29,7 +71,12 @@ const MovieInfo = ({ movieInfo, handleClick, setMovieInfo }) => {
             >
               Play
             </button>
-            <button className="banner_button btnI">My List</button>
+            <button className="banner_button btnI" onClick={addToMyList}>
+              Add to my list
+            </button>
+            <div className={`addList ${!add && "addNone"}`}>
+              <h3>Movie is added</h3>
+            </div>
           </div>
         </div>
       </div>

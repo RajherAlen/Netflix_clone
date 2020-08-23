@@ -63,7 +63,8 @@ const Banner = () => {
           <button className="banner_button" onClick={() => handleClick(movie)}>
             Play
           </button>
-          <button className="banner_button">My List</button>
+
+          <button className="banner_button">Add to my list</button>
         </div>
         <h1 className="banner_description">{truncate(movie?.overview, 150)}</h1>
       </div>

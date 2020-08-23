@@ -129,6 +129,36 @@ body {
   object-fit: contain;
 }
 
+.nav_avatarUser {
+  position: fixed;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+}
+
+.nav_movieList {
+  color: #fff;
+  text-decoration: none;
+}
+.nav_show {
+  transition: 0.6s all ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+  margin-left: -50px;
+  padding-left: 50px;
+  justify-content: center;
+  background-color: #222;
+}
+
+.nav_show h5 {
+  padding: 6px 0;
+}
+.nav_show h5:hover {
+  background-color: rgba(56, 56, 56, 0.425);
+}
+
 .youtubeVideo {
   position: absolute;
   top: 10%;
@@ -207,8 +237,8 @@ body {
 }
 
 .moviePoster {
-  width: 450px;
-  height: 700px;
+  width: 400px;
+  height: 600px;
 }
 
 .movieOverview {
@@ -244,9 +274,9 @@ body {
 .xInfo {
   top: 9%;
   right: 6%;
-  font-size: 50px;
-  width: 60px;
-  height: 60px;
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
 }
 
 .ytInfo {
@@ -262,4 +292,94 @@ body {
 
 .ytInfoVideo {
   width: 70vw;
+}
+
+.form_signUp {
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  justify-content: space-evenly;
+}
+
+.form_button {
+  background-color: #fff;
+}
+
+.form_button:hover {
+  background-color: #fff !important;
+  border: 1px solid rgb(170, 72, 72);
+  color: rgb(170, 72, 72);
+}
+
+.movie_list {
+  max-width: 1400px;
+  min-height: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 160px;
+  padding-bottom: 70px;
+  background-color: rgba(189, 189, 189, 0.1);
+  box-shadow: 0 2.8px 2.2px #f5005625, 0 6.7px 5.3px #f500561f,
+    0 12.5px 10px #f500562a, 0 22.3px 17.9px #f500562c,
+    0 41.8px 33.4px #f5005618, 0 100px 80px #f5005625;
+}
+
+.movie_list h3 {
+  font-size: 44px;
+  border-bottom: 1px solid #f50057;
+  width: 300px;
+  text-align: center;
+  color: #f50057;
+  margin: 10px 0 40px 0;
+}
+
+.movie_title {
+  color: #e6e6e6;
+}
+
+.addList {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 290px;
+  height: 70px;
+  font-size: 25px;
+  background-color: rgb(218, 188, 18);
+  color: rgb(51, 51, 51);
+}
+
+.addNone {
+  display: none;
+}
+
+.list_item {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 80%;
+  cursor: pointer;
+  padding: 0 15px;
+  margin: 2px 0;
+  color: #e6e6e6;
+}
+
+.checked {
+  text-decoration: line-through;
+  text-decoration-color: #f50057;
+  background-color: #f500563d;
+}
+
+.list_item h2 {
+  margin: -5px 0 0 10px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.movie_listNumber {
+  font-size: 20px;
+  color: #f50056ab;
 }
