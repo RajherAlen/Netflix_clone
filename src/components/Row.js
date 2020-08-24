@@ -89,6 +89,7 @@ const Row = ({ title, fetchURL, isLargeRow }) => {
           handleClick={handleClick}
           setMovieInfo={setMovieInfo}
           user={user[0]}
+          
         />
       )}
       {trailerUrl && (

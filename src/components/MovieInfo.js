@@ -4,7 +4,7 @@ import firebase from "firebase";
 
 const base_url = "https://image.tmdb.org/t/p/original/";
 
-const MovieInfo = ({ movieInfo, handleClick, setMovieInfo }) => {
+const MovieInfo = ({ movieInfo, handleClick, setMovieInfo, id }) => {
   const [add, setAdd] = useState(false);
   const [locUserId, setLocUserId] = useState("");
   const [myList, setMyList] = useState([]);
@@ -20,6 +20,7 @@ const MovieInfo = ({ movieInfo, handleClick, setMovieInfo }) => {
     }
   }, [locUserId]);
 
+  
   useEffect(() => {
     const data = localStorage.getItem("current-user");
 
@@ -30,8 +31,6 @@ const MovieInfo = ({ movieInfo, handleClick, setMovieInfo }) => {
   }, []);
 
   const addToMyList = () => {
-    let newList = myList.filter((movie) => movieInfo.id !== movie.id);
-
     db.collection("users")
       .doc(locUserId)
       .collection("movieList")

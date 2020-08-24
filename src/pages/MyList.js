@@ -9,8 +9,8 @@ const MyList = () => {
 
   let userHasMap = {};
   let newList = myList.filter((item, _) => {
-    let userExists = userHasMap.hasOwnProperty(item.id);
-    return userExists ? false : (userHasMap[item.id] = 1);
+    let userExists = userHasMap.hasOwnProperty(item.data.id);
+    return userExists ? false : (userHasMap[item.data.id] = 1);
   });
 
   useEffect(() => {
@@ -22,7 +22,9 @@ const MyList = () => {
         .collection("movieList")
         .orderBy("timestamp", "desc")
         .onSnapshot((snapshot) => {
-          setMyList(snapshot.docs.map((doc) => doc.data()));
+          setMyList(
+            snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+          );
         });
     }
     return () => {
@@ -30,21 +32,18 @@ const MyList = () => {
     };
   }, [listId]);
 
-
-
-
-
-
-
-
-
   return (
     <div className="movie_list">
       <h3>
         MY LIST <span className="movie_listNumber">({newList.length})</span>
       </h3>
       {newList.map((movie) => (
-        <ListItem key={movie.id} title={movie.title}  />
+        <ListItem
+          key={movie.id}
+          id={movie.id}
+          title={movie.data.title}
+          watched={movie.data.watched}
+        />
       ))}
     </div>
   );
