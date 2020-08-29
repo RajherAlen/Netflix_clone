@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../logo.png";
-import { Modal, Input, Button } from "@material-ui/core";
+import { Modal, Input, Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { auth, db } from "../firebase";
 import { Link } from "react-router-dom";
@@ -129,20 +129,20 @@ const Nav = () => {
       >
         <div style={modalStyle} className={classes.paper}>
           <form className="form_signUp">
-            <Input
-              placeholder="username"
+            <TextField
+              label="Username"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            <Input
-              placeholder="email"
+            <TextField
+              label="E-mail"
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Input
-              placeholder="password"
+            <TextField
+              label="Password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -171,20 +171,29 @@ const Nav = () => {
       >
         <div style={modalStyle} className={classes.paper}>
           <form className="form_signUp">
-            <Input
-              placeholder="email"
+            <TextField
+              label="E-mail"
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Input
-              placeholder="password"
+            <TextField
+              label="Password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <Button type="submit" onClick={signIn}>
               Sign In
+            </Button>
+            <Button
+              className="form_button"
+              onClick={() => {
+                setOpen(true);
+                setOpenSignIn(false);
+              }}
+            >
+              Sign Up
             </Button>
           </form>
         </div>

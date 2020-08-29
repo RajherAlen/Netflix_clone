@@ -297,7 +297,7 @@ body {
 .form_signUp {
   display: flex;
   flex-direction: column;
-  height: 250px;
+  height: 320px;
   justify-content: space-evenly;
 }
 
